@@ -1,0 +1,19 @@
+package com.cico.RestController;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cico.dto.ApiResponseDto;
+
+@RestController
+@RequestMapping("/student")
+public class StudentRestController {
+
+	@PostMapping("/login")
+	public ResponseEntity<ApiResponseDto> login(){
+		
+	}
+	
+}

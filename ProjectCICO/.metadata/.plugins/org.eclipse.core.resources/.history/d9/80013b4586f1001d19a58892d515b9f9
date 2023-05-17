@@ -1,0 +1,10 @@
+package com.cico.ServiceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.cico.Service.IAttendanceService;
+
+@Service
+public class AttendanceServiceImpl implements IAttendanceService {
+
+}

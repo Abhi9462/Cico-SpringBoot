@@ -1,0 +1,19 @@
+package com.cico.Models;
+
+import java.sql.Time;
+import java.time.LocalDate;
+
+public class Attendance {
+	
+	Integer attendanceId;
+	Integer studentId;
+	LocalDate checkInDate; 
+    Time checkInTime ;
+    LocalDate checkOutDate ;
+    Time checkOutTime; 
+	String checkOutStatus;
+	Long workingHour;
+	LocalDate createdDate ;
+	LocalDate updatedDate;
+
+}

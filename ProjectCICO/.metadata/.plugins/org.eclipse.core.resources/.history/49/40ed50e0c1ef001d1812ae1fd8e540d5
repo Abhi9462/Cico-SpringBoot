@@ -1,0 +1,5 @@
+package com.cico.config;
+
+public class SecurityConfig {
+
+}

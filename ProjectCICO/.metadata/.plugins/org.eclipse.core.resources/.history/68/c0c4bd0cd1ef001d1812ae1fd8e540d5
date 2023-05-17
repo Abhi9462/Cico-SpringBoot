@@ -1,0 +1,97 @@
+package com.cico.Models;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "students")
+public class Student {
+
+	@Id
+	@Column(name = "student_id")
+	private Integer studentId;
+	
+	private String userId;
+	
+	@Column(name = "full_name")
+	private String fullName;
+	
+	private String mobile;
+	
+	private LocalDate dob;
+	
+	private String email;
+	
+	private String password;
+	
+	private String college;
+	
+	@Column(name = "join_date")
+	private LocalDate joinDate;
+	
+	@Column(name = "profile_pic")
+	private String profilePic;
+	
+	@Column(name = "created_date")
+	private LocalDateTime createdDate;
+	
+	private String applyForCourse;
+	
+	private String currentSem;
+	
+	private String fathersName;
+	
+	private String mothersName;
+	
+	private String fathersOccupation;
+	
+	private String contactFather;
+	
+	private String contactMother;
+	
+	private String localAddress;
+	
+	private String permanentAddress;
+	
+	private String languageKnown;
+	
+	private String currentCourse;
+	
+	private String fcmId;
+	
+	private String deviceId;
+	
+	private String inUseDeviceId;
+	
+	private String isDeviceApproved;
+	
+	private String deviceType;
+	
+	private boolean isFromEnquiry;
+	
+	@Column(name = "is_converted")
+	private boolean isConverted;
+	
+	@Column(name = "is_completed")
+	private boolean isCompleted;
+	
+	@Column(name = "is_active")
+	private boolean isActive;
+	
+	private String role;
+	
+}
+

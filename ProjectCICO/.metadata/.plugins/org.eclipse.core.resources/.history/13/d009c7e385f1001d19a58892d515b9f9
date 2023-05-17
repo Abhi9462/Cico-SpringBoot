@@ -1,0 +1,7 @@
+package com.cico.ServiceImpl;
+
+import com.cico.Service.IAttendanceService;
+
+public class AttendanceServiceImpl implements IAttendanceService {
+
+}

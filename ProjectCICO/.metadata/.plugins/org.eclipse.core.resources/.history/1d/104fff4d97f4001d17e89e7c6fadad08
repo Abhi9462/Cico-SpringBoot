@@ -1,0 +1,74 @@
+package com.cico.RestController;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cico.Models.Attendance;
+import com.cico.Models.Student;
+import com.cico.RequestDto.JwtRequestDto;
+import com.cico.ResponseDto.ApiResponseDto;
+import com.cico.Service.IAttendanceService;
+import com.cico.Service.IStudentService;
+import com.cico.Util.JwtUtil;
+
+
+@RestController
+@RequestMapping("/student")
+@CrossOrigin("*")
+public class StudentRestController {
+	
+	@Autowired
+	AuthenticationManager manager;
+	
+	@Autowired
+	JwtUtil util;
+	
+	@Autowired
+	IStudentService studentService;
+	
+	@Autowired
+	IAttendanceService attendanceService;
+ 
+	@PostMapping("/login")
+	public ResponseEntity<ApiResponseDto> login(@RequestBody JwtRequestDto dto){
+		manager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUserId(), dto.getPassword()));
+		String token = util.generateToken(dto.getUserId());
+		ApiResponseDto responseDto=new ApiResponseDto(200, "Success", token);
+        return ResponseEntity.ok(responseDto);
+	}
+	
+	
+	@GetMapping("/getCurrentStudent/{token}")
+	public ResponseEntity<ApiResponseDto> getCurrentStudent(@PathVariable String token){
+		Student currentStudent = studentService.getCurrentStudent(util.getUsername(token));    
+		System.out.println(currentStudent);
+		ApiResponseDto responseDto=new ApiResponseDto(200, "Success", currentStudent);
+        return ResponseEntity.ok(responseDto);
+	}
+	
+	@PostMapping("/checkIn")	
+	public ResponseEntity<ApiResponseDto> checkIn(@RequestBody Attendance attendance){
+		Attendance attendance2= attendanceService.checkIn(attendance);   
+		
+		ApiResponseDto responseDto=new ApiResponseDto(200, "Success", attendance2);
+        return ResponseEntity.ok(responseDto);
+	}
+	
+	@PostMapping("/checkOut")	
+	public ResponseEntity<ApiResponseDto> checkOut(@RequestBody Attendance attendance){
+		Attendance attendance2= attendanceService.checkOut(attendance);   
+		
+		ApiResponseDto responseDto=new ApiResponseDto(200, "Success", attendance2);
+        return ResponseEntity.ok(responseDto);
+	}
+	
+}

@@ -1,0 +1,120 @@
+package com.cico.Models;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "students")
+public class Student {
+
+	@Id
+	@Column(name = "student_id")
+	private Integer studentId;
+	
+	@Column(name = "userId")
+	private String userId;
+	
+	@Column(name = "full_name")
+	private String fullName;
+	
+	@Column(name = "mobile")
+	private String mobile;
+	
+	@Column(name = "dob")
+	private LocalDate dob;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "password")
+	private String password;
+	
+	@Column(name = "college")
+	private String college;
+	
+	@Column(name = "join_date")
+	private LocalDate joinDate;
+	
+	@Column(name = "profile_pic")
+	private String profilePic;
+	
+	@Column(name = "created_date")
+	private LocalDateTime createdDate;
+	
+	@Column(name = "applyForCourse")
+	private String applyForCourse;
+	
+	@Column(name = "currentSem")
+	private String currentSem;
+	
+	@Column(name = "fathersName")
+	private String fathersName;
+	
+	@Column(name = "mothersName")
+	private String mothersName;
+	
+	@Column(name = "fathersOccupation")
+	private String fathersOccupation;
+	
+	@Column(name = "contactFather")
+	private String contactFather;
+	
+	@Column(name = "cotactMother")
+	private String contactMother;
+	
+	@Column(name = "localAddress")
+	private String localAddress;
+	
+	@Column(name = "parmanentAddress")
+	private String permanentAddress;
+	
+	@Column(name = "languageKnown")
+	private String languageKnown;
+	
+	@Column(name = "currentCourse")
+	private String currentCourse;
+	
+	@Column(name = "fcmId")
+	private String fcmId;
+	
+	@Column(name = "deviceId")
+	private String deviceId;
+	
+	@Column(name = "inUseDeviceId")
+	private String inUseDeviceId;
+	
+	@Column(name = "isDeviceApproved")
+	private String isDeviceApproved;
+	
+	@Column(name = "deviceType")
+	private String deviceType;
+	
+	@Column(name = "isFromEnquiry")
+	private boolean isFromEnquiry;
+	
+	@Column(name = "is_converted")
+	private boolean isConverted;
+	
+	@Column(name = "is_completed")
+	private boolean isCompleted;
+	
+	@Column(name = "is_active")
+	private boolean isActive;
+	
+	private String role;
+	
+}
+

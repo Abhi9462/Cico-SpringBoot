@@ -1,0 +1,47 @@
+package com.cico.ServiceImpl;
+
+import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.cico.Models.Student;
+import com.cico.Repo.StudentRepo;
+import com.cico.Service.IStudentService;
+
+@Service
+public class StudentServiceImpl implements IStudentService,UserDetailsService {
+    
+	@Autowired
+	StudentRepo repo;
+	
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) {
+	Optional<Student> studOpt=	repo.findByUserIdAndIsActive(username, true);
+	if(studOpt.isEmpty())
+		throw new UsernameNotFoundException("Username "+username+" Not Found");
+	
+	Student student=studOpt.get();
+	System.out.println(student);
+	List<GrantedAuthority> authority=List.of(new SimpleGrantedAuthority("Student"));
+		return new User(username, student.getPassword(), authority);
+	}
+
+
+	@Override
+	public Student getCurrentUser(String username) {
+      return   repo.findByUserIdAndIsActive(username, true).orElseThrow(()->
+       new UserNotFoundException(username+" Not exists"));
+       
+	}
+
+}
